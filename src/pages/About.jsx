@@ -1,5 +1,5 @@
-
-import Shahid from '../components/shahid'
+import React from 'react';
+import Shahid from '../components/Shahid';
 import { useDispatch } from '../context/Store';
 
 
