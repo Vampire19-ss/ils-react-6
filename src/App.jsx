@@ -9,7 +9,9 @@ import About from "./pages/About";
 import { ToastContainer } from "react-toastify";
 import PageNotFound from "./pages/PageNotFound";
 import Photos from "./pages/Photos";
-import News from "./pages/news";
+import News from "./pages/News";
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 
@@ -37,7 +39,7 @@ const App = () => {
             <Route path="/about" element={<About  />} />
             <Route path="/user/account" element={<Account  />} />
             <Route path="/Photos" element={<Photos/>} />
-            <Route path="/News" element={< News  />} />
+            <Route path="/News" element={< News />} />
          
           </Routes>
       
