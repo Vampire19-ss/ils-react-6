@@ -14,7 +14,7 @@ export const Store = ({children}) => {
 
   return (
     <Context.Provider value={{state , dispatch}}>
-      {children}  //aap  
+      {children} 
     </Context.Provider>
   );
 };

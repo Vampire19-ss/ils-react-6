@@ -11,6 +11,8 @@ import PageNotFound from "./pages/PageNotFound";
 import Photos from "./pages/Photos";
 import News from "./pages/News";
 import "react-toastify/dist/ReactToastify.css";
+import IsAuthorised from "./Auth/IsAuthorised";
+import Dashboard from "./pages/Dashboard";
 
 
 
@@ -38,9 +40,9 @@ const App = () => {
             <Route path="/" element={<Home  />} />
             <Route path="/about" element={<About  />} />
             <Route path="/user/account" element={<Account  />} />
-            <Route path="/Photos" element={<Photos/>} />
+            <Route path="/gallery" element={  <IsAuthorised><Photos/></IsAuthorised>  } />
             <Route path="/News" element={< News />} />
-         
+            <Route path="/user/dashboard" element={<IsAuthorised><Dashboard/></IsAuthorised>}/> 
           </Routes>
       
 

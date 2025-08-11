@@ -1,6 +1,7 @@
 
 import  { useState } from 'react'
-import { Link } from 'react-router-dom';
+//import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { loginHandler } from '../../../context/Actions';
 import { useDispatch } from '../../../context/Store';
@@ -10,7 +11,7 @@ const Login = ({darkmode , setShowRegister}) => {
 
     //const {state , dispatch} = useContext(Context)
     const {state, dispatch} = useDispatch()
-
+     const Navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPass] = useState("");
     const formBody = { email, password }
@@ -50,7 +51,16 @@ const Login = ({darkmode , setShowRegister}) => {
                     <p> Checkout our <Link> user agreement policy  </Link>  & <Link> Terms and Conditions</Link> </p>
                 </div>
 
-                <button type="button" onClick={() => loginHandler(formBody, dispatch)} disabled={state.loading} > {state.loading ? <BeatLoader /> : "Login"}</button>
+                 <button type="button"
+                    onClick={async () => {
+                        const login = await loginHandler(formBody, dispatch)
+
+                        if (login) {
+                            Navigate("/user/dashboard")
+                        }
+                    }}
+                    disabled={state.loading} >
+                    {state.loading ?<BeatLoader/> : "Login"} </button>
             </form>
         </div>
 

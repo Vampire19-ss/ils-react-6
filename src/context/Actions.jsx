@@ -50,14 +50,27 @@ export const loginHandler = async (formBody, dispatch) => {
         );
 
         if (res.status === 200) {
-            dispatch({ type: "SET_LOADING", payload: false })
+            dispatch({ type: "SET_LOADING", payload: false });
+            // dispatch({ type: "SET_USER", payload: res.data.payload })  // payload persistance is only for time if the app is not reloaded ....
 
-            dispatch({ type: "SET_USER", payload: res.data.payload })
+            localStorage.setItem("Authorization_Token", res.data.payload); // 5mb
+            // sessionStorage     // 5mb    // data persist for the time when the browser is open
             toast.success(res.data.message);
+        
+             return true;
         }
+
     } catch (error) {
-        toast.error("Network Error");
-        console.error(error);
+         if (error.status) {
+      toast.error(error.response.data.message);
+    } else {
+      toast.error("Network Error");
+    }
+
+    dispatch({ type: "SET_LOADING", payload: false });
+    console.error(error);
+    return false;
+  
     }
 };
 
